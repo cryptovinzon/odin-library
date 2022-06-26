@@ -19,5 +19,5 @@ function generateBook() {
 document.getElementById('add-book-form').addEventListener('submit', () => {
     let title = document.getElementById('book-title').value;
     addBookToLibrary(title);
-    generateBook(title);
+    generateBook();
 });
