@@ -4,12 +4,20 @@ function Book(title) {
     this.title = title;
 }
 
-document.getElementById('add-book-form').addEventListener('submit', () => {
-    let title = document.getElementById('book-title').value;
-    addBookToLibrary(title);
-});
-
 function addBookToLibrary(title) {
     const newBook = new Book(title)
     myLibrary.push(newBook);
 }
+
+function generateBook() {
+    const bookSection = document.querySelector('.book-section');
+    const bookDiv = document.createElement('div');
+    bookDiv.classList.add('book');
+    bookSection.appendChild(bookDiv);
+}
+
+document.getElementById('add-book-form').addEventListener('submit', () => {
+    let title = document.getElementById('book-title').value;
+    addBookToLibrary(title);
+    generateBook(title);
+});

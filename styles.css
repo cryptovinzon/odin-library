@@ -1,0 +1,22 @@
+.book-section {
+    margin-top: 32px;
+    display: grid;
+    width: 800px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 24px;
+    justify-items: center;
+}
+
+.book {
+    display: flex;
+    height: 300px;
+    width: 200px;
+    background-color: burlywood;
+    justify-content: center;
+    border: double 10px rgb(189, 165, 133) ;
+}
+
+.title {
+    padding-top: 24px;
+}
