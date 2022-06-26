@@ -16,6 +16,10 @@ function generateBook() {
     bookSection.appendChild(bookDiv);
 }
 
+document.querySelector('.add-button').addEventListener('click', () => {
+    document.querySelector('.panel').classList.toggle('active');
+});
+
 document.getElementById('add-book-form').addEventListener('submit', () => {
     let title = document.getElementById('book-title').value;
     addBookToLibrary(title);
