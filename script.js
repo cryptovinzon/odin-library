@@ -1,12 +1,15 @@
 let myLibrary = [];
 
-function Book(title) {
+function Book(title, author, pages) {
     this.title = title;
+    this.author = author;
+    this.pages = pages;
 }
 
-function addBookToLibrary(title) {
-    const newBook = new Book(title)
+function addBookToLibrary(title, author, pages) {
+    const newBook = new Book(title, author, pages)
     myLibrary.push(newBook);
+    console.table(myLibrary)
 }
 
 function generateBook() {
@@ -22,6 +25,8 @@ document.querySelector('.add-button').addEventListener('click', () => {
 
 document.getElementById('add-book-form').addEventListener('submit', () => {
     let title = document.getElementById('book-title').value;
-    addBookToLibrary(title);
+    let author = document.getElementById('author').value;
+    let pages = document.getElementById('pages').value;
+    addBookToLibrary(title, author, pages);
     generateBook();
 });
