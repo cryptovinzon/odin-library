@@ -1,14 +1,35 @@
-.add-button {
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+    display: grid;
+    justify-items: center;
+}
+
+.add-book-panel {
     background-color: lightgray;
-    width: 50%;
+    width: 480px;    
     padding: 18px;
     border: none;
+    border-radius: 10px;
     transition: 0.25s;
     margin-bottom: 24px;
 }
 
-.add-button:hover {
+.add-book-panel:hover {
     background-color: rgb(152, 152, 152);
+}
+
+.submit-button {
+    background-color: burlywood;
+    border-radius: 10px;
+    padding: 18px;
+    border: none;
+}
+
+.submit-button:hover {
+    background-color: rgb(244, 186, 111)
 }
 
 .panel {
@@ -16,7 +37,22 @@
 }
 
 .active {
-    display: block;
+    display: grid;
+}
+
+form {
+    display: grid;
+}
+
+form > div {
+    display: flex;
+    justify-content: space-between;    
+    align-items: center;
+    padding-bottom: 8px;
+}
+
+label {
+    padding-right: 8px;
 }
 
 .book-section {
@@ -31,13 +67,12 @@
 
 .book {
     display: flex;
+    flex-direction: column;
     height: 300px;
     width: 200px;
     background-color: burlywood;
-    justify-content: center;
-    border: double 10px rgb(189, 165, 133) ;
-}
-
-.title {
-    padding-top: 24px;
+    align-items: center;
+    border: double 10px rgb(189, 165, 133);
+    border-radius: 2px 10px 10px 2px;
+    padding-top: 18px;
 }
