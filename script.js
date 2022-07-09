@@ -8,9 +8,10 @@ function Book(title, author, pages, status) {
     this.author = author;
     this.pages = Number(pages);
     this.status = status;
+    
 }
 
-document.querySelector('.add-book-panel').addEventListener('click', (e) => {
+document.querySelector('.add-book-panel').addEventListener('click', () => {
     document.querySelector('.panel').classList.toggle('active');
 });
 
@@ -23,9 +24,8 @@ document.getElementById('add-book-form').addEventListener('submit', () => {
 });
 
 function addBookToLibrary(title, author, pages, status) {
-    const newBook = new Book(title, author, pages, status)
-    myLibrary.push(newBook);
-    refreshLibrary()
+    myLibrary.push(new Book(title, author, pages, status));    
+    refreshLibrary();
 }
 
 function refreshLibrary() {
@@ -38,13 +38,12 @@ function generateBook(item, index) {
     const bookSection = document.querySelector('.book-section');
     const bookDiv = document.createElement('div');
     bookDiv.classList.add('book');
-    bookDiv.classList.add(`data-index=${index}`)
 
     const title = document.createElement('div');
-    title.textContent = item.title.toUpperCase()
+    title.textContent = item.title.toUpperCase();
     bookDiv.appendChild(title);
     const author = document.createElement('div');
-    author.textContent = item.author
+    author.textContent = item.author;
     bookDiv.appendChild(author);
     const pages = document.createElement('div');
     pages.textContent = `${item.pages} pages`;
@@ -53,7 +52,20 @@ function generateBook(item, index) {
     status.textContent = item.status? 'Read' : 'Unread';
     bookDiv.appendChild(status);
 
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.setAttribute('data-index', index);
+    deleteButton.addEventListener('click', function() {
+        removeBook(index);
+    })
+    bookDiv.appendChild(deleteButton);
+
     bookSection.appendChild(bookDiv);
+}
+
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    refreshLibrary();
 }
 
 refreshLibrary()
