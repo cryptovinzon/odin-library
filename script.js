@@ -1,7 +1,4 @@
-let myLibrary = [
-    {title: 'bitcoin', author: 'satoshi', pages: 9, status: true},
-    {title: 'ethereum', author: 'vitalik', pages: 12, status: false}
-];
+let myLibrary = [];
 
 function Book(title, author, pages, status) {
     this.title = title;
@@ -9,6 +6,9 @@ function Book(title, author, pages, status) {
     this.pages = Number(pages);
     this.status = status;    
 }
+
+myLibrary.push(new Book('bitcoin', 'satoshi', 9, true))
+myLibrary.push(new Book('ethereum', 'vitalik', 12, false))
 
 Book.prototype.updateStatus = function(item) {
     item.status = 'true'? item.status === false : item.status === true;
@@ -52,13 +52,13 @@ function generateBookCards(item, index) {
     const pages = document.createElement('div');
     pages.textContent = `${item.pages} pages`;
     bookDiv.appendChild(pages);
+
     const status = document.createElement('button');
     status.textContent = item.status? 'Read' : 'Unread';
     // add eventlistener to update read status
     status.addEventListener('click', function() {
         item.updateStatus(item);
     })
-    
     bookDiv.appendChild(status);
 
     // assign data-attribute & event listener to each delete button
