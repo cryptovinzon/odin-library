@@ -7,8 +7,12 @@ function Book(title, author, pages, status) {
     this.title = title;
     this.author = author;
     this.pages = Number(pages);
-    this.status = status;
-    
+    this.status = status;    
+}
+
+Book.prototype.updateStatus = function(item) {
+    item.status = 'true'? item.status === false : item.status === true;
+    refreshLibrary();
 }
 
 document.querySelector('.add-book-panel').addEventListener('click', () => {
@@ -31,10 +35,10 @@ function addBookToLibrary(title, author, pages, status) {
 function refreshLibrary() {
     bookDiv = document.querySelectorAll('.book');
     bookDiv.forEach(book => book.remove());
-    myLibrary.forEach(generateBook);
+    myLibrary.forEach(generateBookCards);
 }
 
-function generateBook(item, index) {
+function generateBookCards(item, index) {
     const bookSection = document.querySelector('.book-section');
     const bookDiv = document.createElement('div');
     bookDiv.classList.add('book');
@@ -48,10 +52,16 @@ function generateBook(item, index) {
     const pages = document.createElement('div');
     pages.textContent = `${item.pages} pages`;
     bookDiv.appendChild(pages);
-    const status = document.createElement('div');
+    const status = document.createElement('button');
     status.textContent = item.status? 'Read' : 'Unread';
+    // add eventlistener to update read status
+    status.addEventListener('click', function() {
+        item.updateStatus(item);
+    })
+    
     bookDiv.appendChild(status);
 
+    // assign data-attribute & event listener to each delete button
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.setAttribute('data-index', index);
