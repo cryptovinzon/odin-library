@@ -62,8 +62,9 @@ function generateBookCards(item, index) {
     bookDiv.appendChild(status);
 
     // assign data-attribute & event listener to each delete button
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
+    const deleteButton = document.createElement('img');
+    //deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-button')
     deleteButton.setAttribute('data-index', index);
     deleteButton.addEventListener('click', function() {
         removeBook(index);
