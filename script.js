@@ -1,14 +1,14 @@
 let myLibrary = [];
 
+myLibrary.push(new Book('bitcoin', 'satoshi', 9, true))
+myLibrary.push(new Book('ethereum', 'vitalik', 12, false))
+
 function Book(title, author, pages, status) {
     this.title = title;
     this.author = author;
     this.pages = Number(pages);
     this.status = status;    
 }
-
-myLibrary.push(new Book('bitcoin', 'satoshi', 9, true))
-myLibrary.push(new Book('ethereum', 'vitalik', 12, false))
 
 Book.prototype.updateStatus = function(item) {
     item.status = 'true'? item.status === false : item.status === true;
@@ -44,18 +44,20 @@ function generateBookCards(item, index) {
     bookDiv.classList.add('book');
 
     const title = document.createElement('div');
-    title.textContent = item.title.toUpperCase();
-    bookDiv.appendChild(title);
     const author = document.createElement('div');
-    author.textContent = item.author;
-    bookDiv.appendChild(author);
     const pages = document.createElement('div');
+
+    title.textContent = item.title.toUpperCase();
+    author.textContent = item.author;
     pages.textContent = `${item.pages} pages`;
+
+    bookDiv.appendChild(title);
+    bookDiv.appendChild(author);
     bookDiv.appendChild(pages);
 
+    // status and eventlistener to toggle read/unread
     const status = document.createElement('button');
     status.textContent = item.status? 'Read' : 'Unread';
-    // add eventlistener to update read status
     status.addEventListener('click', function() {
         item.updateStatus(item);
     })
@@ -63,8 +65,7 @@ function generateBookCards(item, index) {
 
     // assign data-attribute & event listener to each delete button
     const deleteButton = document.createElement('img');
-    //deleteButton.textContent = 'Delete';
-    deleteButton.classList.add('delete-button')
+    deleteButton.classList.add('delete-button');
     deleteButton.setAttribute('data-index', index);
     deleteButton.addEventListener('click', function() {
         removeBook(index);
